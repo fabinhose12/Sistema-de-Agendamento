@@ -1,0 +1,35 @@
+{
+  "name": "sistema-de-agendamento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma skills sync || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabinhose12/Sistema-de-Agendamento.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fabinhose12/Sistema-de-Agendamento/issues"
+  },
+  "homepage": "https://github.com/fabinhose12/Sistema-de-Agendamento#readme",
+  "dependencies": {
+    "@prisma/client": "^7.10.0",
+    "bullmq": "^6.3.11",
+    "dotenv": "^18.0.5",
+    "fastify": "^5.12.5",
+    "ioredis": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "prisma": "^8.0.0-rc.19",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  }
+}
