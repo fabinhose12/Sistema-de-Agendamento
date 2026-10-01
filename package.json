@@ -20,15 +20,15 @@
   },
   "homepage": "https://github.com/fabinhose12/Sistema-de-Agendamento#readme",
   "dependencies": {
-    "@prisma/client": "^7.10.0",
     "bullmq": "^6.3.11",
     "dotenv": "^18.0.5",
     "fastify": "^5.12.5",
     "ioredis": "^6.0.0"
   },
   "devDependencies": {
+    "@prisma/client": "^5.22.0",
     "@types/node": "^26.6.3",
-    "prisma": "^8.0.0-rc.19",
+    "prisma": "^5.22.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
   }
