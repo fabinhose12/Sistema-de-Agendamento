@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma.js';
 import { acquireLock, releaseLock } from './lockService.js';
+import { addBookingNotificationJob } from '../queues/bookingQueue.js';
 
 interface CreateBookingInput {
   userId: string;
@@ -19,6 +20,7 @@ export async function createBookingService({ userId, slotId }: CreateBookingInpu
   }
 
   try {
+    //  Executa a transação atômica no banco de dados
     const booking = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const slot = await tx.slot.findUnique({
         where: { id: slotId },
@@ -49,8 +51,15 @@ export async function createBookingService({ userId, slotId }: CreateBookingInpu
       });
     });
 
+    // Após o sucesso da transação, adiciona o job na fila do BullMQ
+    await addBookingNotificationJob({
+      bookingId: booking.id,
+      userId: booking.userId,
+    });
+
     return booking;
   } finally {
+    // 3. Libera a trava no Redis
     await releaseLock(lockKey);
   }
 }

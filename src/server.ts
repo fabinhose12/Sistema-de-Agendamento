@@ -1,4 +1,5 @@
-const { app } = require('./app');
+import { app } from './app';
+import './queues/bookingWorker.js';
 
 const PORT = Number(process.env.PORT) || 3000;
 
